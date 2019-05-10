@@ -46,7 +46,7 @@ public class HomeController {
 		return ResponseEntity.ok().body(employee);
 	}
 	*/
-	@GetMapping("/")
+	@GetMapping("/form")
 	public String regform() {
 		return "form";
 	}
