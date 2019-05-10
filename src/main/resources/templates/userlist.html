@@ -1,24 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>Registration Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
-<table>
-<thead>
-	<tr>
-		<th>번호</th><th>이름</th><th>회사</th>
-	</tr>
-</thead>
-<tbody>
-	<tr th:each="user : ${users}">
-		<td th:text="${user.id}">Id</td>
-		<td th:text="${user.name}">Id</td>
-		<td th:text="${user.company}">Id</td>
-	</tr>
-</tbody>
-</table>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <h1>User Info</h1>
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">ID</th>
+		      <th scope="col">NAME</th>
+		      <th scope="col">COMPANY</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.id}">Id</td>
+					<td th:text="${user.name}">Name</td>
+					<td th:text="${user.company}">Company</td>
+				</tr>
+		  </tbody>
+		</table>     
+    </div>
+
+</div>
+
+<div class="container">
+    <footer>
+        <p>
+            © <a href="http://egyou.github.io"></a> 2019
+        </p>
+    </footer>
+</div>
+
 </body>
 </html>

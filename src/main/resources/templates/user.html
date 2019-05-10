@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registration Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <h1>User Info</h1>
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">ID</th>
+		      <th scope="col">NAME</th>
+		      <th scope="col">COMPANY</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row" th:text="${id}"></th>
+		      <td th:text="${name}"></td>
+		      <td th:text="${company}"></td>
+		    </tr>
+		  </tbody>
+		</table>     
+    </div>
+
+</div>
+
+<div class="container">
+    <footer>
+        <p>
+            © <a href="http://egyou.github.io"></a> 2019
+        </p>
+    </footer>
+</div>
+
+</body>
+</html>
