@@ -2,19 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Registration Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<script type="text/javascript" src="js/main.js"></script>
+    <title>사용자</title>
+	<th:block th:include="fragments/header"></th:block>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
-        </div>
-    </div>
-</nav>
+<th:block th:include="fragments/nav"></th:block>
 
 <div class="container" style="min-height: 500px">
 
@@ -29,24 +22,23 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr>
+			<tr>
 		      <th scope="row" th:text="${id}"></th>
 		      <td th:text="${name}"></td>
 		      <td th:text="${company}"></td>
-		    </tr>
+		    </tr>	
 		  </tbody>
-		</table>     
+		</table>    
+		<div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" id="bth-search"
+                    class="btn btn-primary btn-lg">Update
+            </button>
+        </div> 
     </div>
 
 </div>
 
-<div class="container">
-    <footer>
-        <p>
-            © <a href="http://egyou.github.io"></a> 2019
-        </p>
-    </footer>
-</div>
+<th:block th:include="fragments/footer"></th:block>
 
 </body>
 </html>
