@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>index.html</title>
+	<th:block th:include="fragments/header"></th:block>
 </head>
 <body>
-보내온 메시지는? <p th:text="${test}"></p>
-<p th:text="${egy}"></p>
+<footer th:include="fragments/nav :: nav"></footer>
+
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <h1>Welcome!~~</h1>
+		
+    </div>
+
+</div>
+
+<th:block th:include="fragments/footer"></th:block>
+
 </body>
 </html>

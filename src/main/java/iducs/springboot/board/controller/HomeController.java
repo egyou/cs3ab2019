@@ -17,20 +17,38 @@ import iducs.springboot.board.exception.ResourceNotFoundException;
 import iducs.springboot.board.repository.UserRepository;
 
 @Controller
-@RequestMapping("/users")
 public class HomeController {
 	@Autowired UserRepository userRepo; // Dependency Injection
 	
-	@GetMapping("/test")
+	@GetMapping("/")
 	public String home(Model model) {
-		model.addAttribute("test", "인덕 컴소");
-		model.addAttribute("egy", "유응구");
 		return "index";
 	}
-	@GetMapping("/")
+	@GetMapping("/register")
+	public String regform() {
+		return "user-form";
+	}
+	
+	@PostMapping("/users")
+	public String createUser(@Valid @RequestBody User user, Model model) {
+		userRepo.save(user);
+		model.addAttribute("user", user);
+		return "redirect:/users";
+	}
+	
+	@GetMapping("/users")
 	public String getAllUser(Model model) {
 		model.addAttribute("users", userRepo.findAll());
-		return "userlist";
+		return "user-list";
+	}	
+	@GetMapping("/users/{id}")
+	public String getUserById(@PathVariable(value = "id") Long userId, Model model)
+			throws ResourceNotFoundException {
+		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
+		model.addAttribute("name", user.getName());
+		model.addAttribute("company", user.getCompany());
+		return "user-info";
+		//return ResponseEntity.ok().body(user);
 	}
 	/*
 	@GetMapping("/{fn}")
@@ -41,16 +59,7 @@ public class HomeController {
 		return ResponseEntity.ok().body(employee);
 	}
 	*/
-	@GetMapping("/{id}")
-	public String getUserById(@PathVariable(value = "id") Long userId, Model model)
-			throws ResourceNotFoundException {
-		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
-		model.addAttribute("name", user.getName());
-		model.addAttribute("company", user.getCompany());
-		return "user";
-		//return ResponseEntity.ok().body(user);
-	}
-	@PutMapping("/{id}")
+	@PutMapping("/users/{id}")
 	public String updateUserById(@PathVariable(value = "id") Long userId, Model model)
 			throws ResourceNotFoundException {
 		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -59,7 +68,7 @@ public class HomeController {
 		return "user";
 		//return ResponseEntity.ok().body(user);
 	}
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/users/{id}")
 	public String deleteUserById(@PathVariable(value = "id") Long userId, Model model)
 			throws ResourceNotFoundException {
 		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
@@ -68,23 +77,5 @@ public class HomeController {
 		return "user";
 		//return ResponseEntity.ok().body(user);
 	}
-	/*
-	@GetMapping("/employees/{fn}")
-	public ResponseEntity<Employee> getEmployeeByFirstName(@PathVariable(value = "fn") String firstName)
-			throws ResourceNotFoundException {
-		Employee employee = userRepo.findByFirstName(firstName)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not found for this firstname :: " + firstName));
-		return ResponseEntity.ok().body(employee);
-	}
-	*/
-	@GetMapping("/form")
-	public String regform() {
-		return "form";
-	}
-	@PostMapping("/create")
-	public String createUser(@Valid @RequestBody User user, Model model) {
-		userRepo.save(user);
-		model.addAttribute("user", user);
-		return "redirect:/users";
-	}
+
 }

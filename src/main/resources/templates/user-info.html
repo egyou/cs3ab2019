@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>사용자</title>
+	<th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+
+<th:block th:include="fragments/nav"></th:block>
+
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <h1>User Info</h1>
+		<table class="table">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">ID</th>
+		      <th scope="col">NAME</th>
+		      <th scope="col">COMPANY</th>
+		      <th scope="col">Update</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			<tr>
+				<form class="form-horizontal" id="user-update-form">
+		      <th><span scope="row" th:text="${id}"></span></th>
+		      <td><input type="text" name="name" th:field="*{name}"/></td>
+		      <td><span th:text="${company}"></span></td>
+		      <td><button type="submit" id="bth-update" class="btn btn-primary btn-lg">Update </button> </td>
+		      </form>
+		    </tr>	
+		  </tbody>
+		</table>    
+		
+
+    </div>
+
+</div>
+
+<th:block th:include="fragments/footer"></th:block>
+
+</body>
+</html>

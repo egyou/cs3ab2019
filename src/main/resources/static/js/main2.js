@@ -12,10 +12,6 @@ $(document).ready(function () {
 
 function fire_ajax_submit() {
 
-    // var search = {}
-    // search["username"] = $("#username").val();
-    // $("#btn-search").prop("disabled", true);
-    // var data = $("#search-form").serializeArray();
 	var data = {
 			"name" : $('#name').val(),
 			"company" : $('#company').val()
@@ -24,7 +20,7 @@ function fire_ajax_submit() {
     $.ajax({
         type: 'POST',
         contentType: "application/json",
-        url: "/create",
+        url: "/users",
         data: JSON.stringify(data),
         dataType: 'text',
         success: function (data) {
