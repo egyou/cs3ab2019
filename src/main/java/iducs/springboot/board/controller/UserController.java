@@ -76,7 +76,8 @@ public class UserController {
 		return "user-updated";
 	}
 	@PatchMapping("/users/{id}")
-	public ResponseEntity<User> patchUserById(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails, Model model)
+	//@RequestBody 사용하는 경우 
+	public ResponseEntity<User> patchUserById(@PathVariable(value = "id") Long userId, @Valid  User userDetails, Model model)
 			throws ResourceNotFoundException {
 		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + userId));
 		user.setName(userDetails.getName());
