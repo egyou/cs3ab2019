@@ -56,11 +56,18 @@ public class UserController {
 		return "user-info";
 		//return ResponseEntity.ok().body(user);
 	}
-	@GetMapping("/users/fn")
-	public String getEmployeeByFirstName(@Param(value = "name") String name, Model model)
+	@GetMapping("/users/byname")
+	public String getEmployeeByName(@Param(value = "name") String name, Model model)
 			throws ResourceNotFoundException {
 		System.out.println(name);
 		List<User> users = userRepo.findByName(name);
+		model.addAttribute("users", users);
+		return "user-list";
+	}
+	@GetMapping("/users/bycompany")
+	public String getUserByCompany(@Param(value = "company") String company, Model model)
+			throws ResourceNotFoundException {
+		List<User> users = userRepo.findByCompany(company);
 		model.addAttribute("users", users);
 		return "user-list";
 	}

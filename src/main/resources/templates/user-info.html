@@ -16,13 +16,14 @@
 	    console.log(json);
 	    url = 
 	    $.ajax({
-	        type: "DELETE",
+	        type: "",
 	        contentType: "application/json",
 	        url: "/users/",
 	        data: json,
 	        dataType: 'text', // json -> text
 	        success: function (data) {
 	        	console.log("SUCCESS : ", data);
+	        	 $("#delete-form").submit();
 	        },
 	        error: function (e) {
 	            console.log("ERROR : ", e);
