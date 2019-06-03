@@ -1,11 +1,18 @@
 package iducs.springboot.board.domain;
 
 public class User {
-	private String userId;
+	private long id; // primary key
+	private String userId; // unique key
 	private String userPw;	
 	private String name;
 	private String company;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getUserId() {
 		return userId;
 	}

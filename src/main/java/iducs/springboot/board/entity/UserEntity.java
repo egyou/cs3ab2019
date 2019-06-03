@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import iducs.springboot.board.domain.User;
+
 @Entity
 @Table(name = "user")
 public class UserEntity {
@@ -51,4 +53,24 @@ public class UserEntity {
 	public void setCompany(String company) {
 		this.company = company;
 	}	
+	
+	public String toString() {
+		return "id : " + userId + ", name : " + name + ", company : " + company;
+	}
+	
+	public User buildDomain() {
+		User user = new User();
+		user.setUserId(userId);
+		user.setUserPw(userPw);
+		user.setName(name);
+		user.setCompany(company);
+		return user;
+	}
+	
+	public void buildEntity(User user) {
+		userId = user.getUserId();
+		userPw = user.getUserPw();
+		name = user.getName();
+		company = user.getCompany();
+	}
 }
