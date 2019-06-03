@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import iducs.springboot.board.domain.User;
+import iducs.springboot.board.entity.UserEntity;
 
 public interface UserRepository 
-	extends JpaRepository<User, Long> {
-	 public List<User> findByName(String name);
-	 public List<User> findByCompany(String company);
+	extends JpaRepository<UserEntity, Long> {
+	
+	UserEntity findByUserId(String userId);
+	public List<UserEntity> findByNameOrderByIdAsc(String name);
+	public List<UserEntity> findByCompany(String company);
 }
