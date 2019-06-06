@@ -8,25 +8,32 @@ import org.springframework.stereotype.Service;
 
 import iducs.springboot.board.domain.User;
 import iducs.springboot.board.entity.UserEntity;
+import iducs.springboot.board.exception.ResourceNotFoundException;
 import iducs.springboot.board.repository.UserRepository;
 
-@Service("userService")
+@Service//("userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired UserRepository repository;
 
 	@Override
-	public User getUser(long id) {
-		// TODO Auto-generated method stub
-		
-		return null;
+	public User getUserById(long id) {
+		UserEntity userEntity = null;
+		try {
+			userEntity = repository.findById(id).orElseThrow(() 
+					-> new ResourceNotFoundException("not found " + id ));
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userEntity.buildDomain();
 	}
 
 	@Override
 	public User getUserByUserId(String userId) {
-		System.out.println(userId);
-		UserEntity userEntity = repository.findByUserId(userId);
-		System.out.println(userEntity.toString());
+		UserEntity userEntity = userEntity = repository.findByUserId(userId);
+		if(userEntity == null)
+			return null;
 		return userEntity.buildDomain();
 	}
 
@@ -68,16 +75,15 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		UserEntity entity = new UserEntity();
+		entity.buildEntity(user);
+		repository.save(entity);
 	}
 
 	@Override
-	public void deleteUser(long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
-		
+	public void deleteUser(User user) {
+		UserEntity entity = new UserEntity();
+		entity.buildEntity(user);
+		repository.delete(entity);
+	}		
 }

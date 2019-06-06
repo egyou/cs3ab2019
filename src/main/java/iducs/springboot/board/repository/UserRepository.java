@@ -10,7 +10,7 @@ import iducs.springboot.board.entity.UserEntity;
 public interface UserRepository 
 	extends JpaRepository<UserEntity, Long> {	
 	UserEntity findByUserId(String userId);
-	public List<UserEntity> findByNameOrderByIdAsc(String name);
-	public List<UserEntity> findByCompany(String company);
+	List<UserEntity> findByNameOrderByIdAsc(String name);
+	List<UserEntity> findByCompany(String company);
 
 }
