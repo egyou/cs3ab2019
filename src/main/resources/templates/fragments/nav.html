@@ -34,12 +34,19 @@
                                 <li th:unless="${session.user}" class="nav-item">
                                     <a class="nav-link" href="/users/form">Register</a>
                                 </li>
-                                <li th:if="${session.user}" class="nav-item">
-                                    <a class="nav-link" href="/questions">Questions</a>
+                                <li th:if="${session.user}" class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        QUESTIONS
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/questions">QUESTION</a>
+                                        <a class="dropdown-item" href="/questions/form">WRITE A QUESTION</a>
+                                        
+                                    </div>
                                 </li>
                                 <li th:if="${session.user}" class="nav-item">
                                		<a class="nav-link" th:href="@{'/users/{id}'(id=${session.user.id})}" >
-                                   <span th:text="${session.user.userId}"></span>님 Info</a>
+                                   <span th:text="${session.user.userId}"></span>Info</a>
                                 </li>
                                 <li th:if="${session.user}" class="nav-item">
                                     <a class="nav-link" href="/logout">Log-Out</a>

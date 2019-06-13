@@ -49,8 +49,12 @@ public class QuerstionController {
 	}
 	
 	@GetMapping("/{id}")
-	public String getQuestionById(@PathVariable(value = "id") Long id, Model model) {
+	public String getQuestionById(@PathVariable(value = "id") Long id, Model model, HttpSession session) {
+		User sessionUser = (User) session.getAttribute("user");
 		Question question = questionService.getQuestionById(id);
+		User writer = question.getWriter();
+		if(sessionUser.equals(writer))
+			model.addAttribute("same", "같다");
 		model.addAttribute("question", question);
 		return "/questions/info";
 	}
