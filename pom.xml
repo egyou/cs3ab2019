@@ -13,7 +13,7 @@
 	<version>0.9</version>
 	<packaging>war</packaging>
 	<name>boot-thymeleaf</name>
-	<description>QnA Borad for Spring Boot</description>
+	<description>kdkim's question and answer board</description>
 
 	<properties>
 		<java.version>1.8</java.version>
