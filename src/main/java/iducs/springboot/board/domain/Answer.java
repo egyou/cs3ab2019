@@ -50,5 +50,10 @@ public class Answer {
 		this.createTime = createTime;
 	}
 	
+	public boolean isSameUser(User user, User writer) {
+		if(user.equals(writer))
+			return true;
+		return false;
+	}
 	
 }
